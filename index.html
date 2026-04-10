@@ -474,6 +474,7 @@
         <form
           name="leads-vtexday"
           method="POST"
+          action="/?success=true"
           data-netlify="true"
           netlify-honeypot="bot-field"
           id="leadForm"
@@ -591,31 +592,11 @@
       e.target.value = v.replace(/-$/, '');
     });
 
-    // Show success state after Netlify redirect (hash trick)
+    // Show success state after Netlify redirect
     if (window.location.search.includes('success=true')) {
       document.getElementById('leadForm').style.display = 'none';
       document.getElementById('successState').style.display = 'flex';
     }
-
-    // AJAX submit for SPA feel (Netlify supports this)
-    document.getElementById('leadForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data).toString(),
-      })
-        .then(() => {
-          form.style.display = 'none';
-          document.getElementById('successState').style.display = 'flex';
-        })
-        .catch(() => {
-          form.submit(); // fallback to native submit
-        });
-    });
   </script>
 </body>
 </html>
