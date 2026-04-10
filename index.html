@@ -65,11 +65,39 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .nav-logos {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
     .logo {
       display: flex;
       align-items: center;
       gap: 10px;
       text-decoration: none;
+    }
+
+    .logo-sep {
+      color: rgba(255,255,255,0.18);
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .vtex-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .vtex-wordmark {
+      font-size: 21px;
+      font-weight: 800;
+      color: #F71963;
+      letter-spacing: -0.01em;
+      line-height: 1;
     }
 
     .nav-badge {
@@ -349,7 +377,10 @@
       .page {
         grid-template-columns: 1fr;
       }
-      nav { padding: 20px 24px; }
+      nav { padding: 20px 24px; flex-wrap: wrap; gap: 12px; }
+      .nav-logos { gap: 14px; }
+      .vtex-wordmark { font-size: 17px; }
+      nav svg[aria-label="Koin"] { width: 80px; height: 30px; }
       .hero {
         grid-column: 1;
         grid-row: 2;
@@ -371,15 +402,29 @@
 
     <!-- NAV -->
     <nav>
-      <a href="https://koin-hub.netlify.app/" class="logo" target="_blank" rel="noopener">
-        <svg width="111" height="42" viewBox="0 0 222 83" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Koin">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M95.5816 83C113.461 83 127.959 68.5501 127.959 50.7196C127.959 32.889 113.466 18.4391 95.5816 18.4391C77.6976 18.4391 63.2043 32.889 63.2043 50.7196C63.2043 68.5501 77.6976 83 95.5816 83ZM95.5816 68.4004C105.371 68.4004 113.311 60.4848 113.311 50.7244C113.311 40.964 105.371 33.0484 95.5816 33.0484C85.7919 33.0484 77.8526 40.964 77.8526 50.7244C77.8526 60.4848 85.7919 68.4004 95.5816 68.4004Z" fill="white"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M153.395 3.8147e-06H138.746V12.2959H153.395V3.8147e-06ZM138.746 32.2804H131.04V19.9845H153.395V81.4642H138.746V32.2804Z" fill="white"/>
-          <path d="M180.371 29.204C183.926 23.8674 189.637 18.4439 198.87 18.4439C214.39 18.4439 222 29.9719 222 44.5715V81.4593H207.352V47.6431C207.352 39.2204 202.426 33.0387 194.244 33.0387C185.486 33.0387 180.366 40.5775 180.366 49.9468V81.4545H165.718V19.9797H180.366V29.204H180.371Z" fill="white"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M0 19.9797V81.4594H14.6482V19.9797H0ZM38.5388 43.0358L66.29 81.4642H47.7908L30.0618 57.6402L38.5388 43.0358Z" fill="white"/>
-          <path d="M43.9349 12.2959L3.08069 81.4642H20.0395L60.8937 12.2959H43.9349Z" fill="#14DD3E"/>
-        </svg>
-      </a>
+      <div class="nav-logos">
+        <a href="https://koin-hub.netlify.app/" class="logo" target="_blank" rel="noopener">
+          <svg width="111" height="42" viewBox="0 0 222 83" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Koin">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M95.5816 83C113.461 83 127.959 68.5501 127.959 50.7196C127.959 32.889 113.466 18.4391 95.5816 18.4391C77.6976 18.4391 63.2043 32.889 63.2043 50.7196C63.2043 68.5501 77.6976 83 95.5816 83ZM95.5816 68.4004C105.371 68.4004 113.311 60.4848 113.311 50.7244C113.311 40.964 105.371 33.0484 95.5816 33.0484C85.7919 33.0484 77.8526 40.964 77.8526 50.7244C77.8526 60.4848 85.7919 68.4004 95.5816 68.4004Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M153.395 3.8147e-06H138.746V12.2959H153.395V3.8147e-06ZM138.746 32.2804H131.04V19.9845H153.395V81.4642H138.746V32.2804Z" fill="white"/>
+            <path d="M180.371 29.204C183.926 23.8674 189.637 18.4439 198.87 18.4439C214.39 18.4439 222 29.9719 222 44.5715V81.4593H207.352V47.6431C207.352 39.2204 202.426 33.0387 194.244 33.0387C185.486 33.0387 180.366 40.5775 180.366 49.9468V81.4545H165.718V19.9797H180.366V29.204H180.371Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 19.9797V81.4594H14.6482V19.9797H0ZM38.5388 43.0358L66.29 81.4642H47.7908L30.0618 57.6402L38.5388 43.0358Z" fill="white"/>
+            <path d="M43.9349 12.2959L3.08069 81.4642H20.0395L60.8937 12.2959H43.9349Z" fill="#14DD3E"/>
+          </svg>
+        </a>
+
+        <span class="logo-sep">×</span>
+
+        <div class="vtex-logo">
+          <svg width="34" height="34" viewBox="0 0 100 95" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M13 6C6 6 2 13 6 20L44 86C45.5 89 48 92 50 92C52 92 54.5 89 56 86L94 20C98 13 94 6 87 6ZM50 64L25 20L75 20Z"
+              fill="#F71963"/>
+          </svg>
+          <span class="vtex-wordmark">VTEX</span>
+        </div>
+      </div>
+
       <span class="nav-badge">VTEX Day 2026</span>
     </nav>
 
