@@ -283,52 +283,6 @@
       color: #fff;
     }
 
-    .radio-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .radio-card {
-      cursor: pointer;
-    }
-
-    .radio-card input[type="radio"] {
-      display: none;
-    }
-
-    .radio-card-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      padding: 12px 14px;
-      border: 1px solid var(--input-border);
-      border-radius: 10px;
-      background: var(--input-bg);
-      transition: border-color 0.15s, background 0.15s;
-    }
-
-    .radio-card:hover .radio-card-inner {
-      border-color: rgba(20,221,62,0.3);
-    }
-
-    .radio-card input[type="radio"]:checked + .radio-card-inner {
-      border-color: var(--green);
-      background: rgba(20,221,62,0.07);
-    }
-
-    .radio-card-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .radio-card-desc {
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
     .submit-btn {
       width: 100%;
       background: var(--green);
@@ -594,23 +548,12 @@
           </div>
 
           <div class="form-group">
-            <label>Produto de interesse</label>
-            <div class="radio-cards">
-              <label class="radio-card">
-                <input type="radio" name="produto" value="bnpl" required />
-                <span class="radio-card-inner">
-                  <span class="radio-card-title">BNPL</span>
-                  <span class="radio-card-desc">Compre agora, pague depois</span>
-                </span>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="produto" value="antifraude" required />
-                <span class="radio-card-inner">
-                  <span class="radio-card-title">Antifraude</span>
-                  <span class="radio-card-desc">Proteção inteligente contra fraudes</span>
-                </span>
-              </label>
-            </div>
+            <label for="produto">Produto de interesse</label>
+            <select id="produto" name="produto" required>
+              <option value="" disabled selected>Selecione o produto</option>
+              <option value="bnpl">BNPL — Compre agora, pague depois</option>
+              <option value="antifraude">Antifraude — Proteção contra fraudes</option>
+            </select>
           </div>
 
           <button type="submit" class="submit-btn">Quero conversar com a Koin</button>
