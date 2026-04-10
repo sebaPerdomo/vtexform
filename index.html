@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koin no VTEX Day 2026 — Fale com nosso time</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #14DD3E;
+      --bg: #1E2728;
+      --card: #192122;
+      --border: rgba(255,255,255,0.07);
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.5);
+      --input-bg: rgba(255,255,255,0.05);
+      --input-border: rgba(255,255,255,0.12);
+      --input-focus: rgba(20,221,62,0.35);
+    }
+
+    html, body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── BACKGROUND GLOW ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(20,221,62,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    /* ── NAV ── */
+    nav {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--bg);
+      letter-spacing: -0.03em;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+    }
+
+    .nav-badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      border: 1px solid rgba(20,221,62,0.3);
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    /* ── HERO (left column) ── */
+    .hero {
+      grid-column: 1;
+      grid-row: 2;
+      padding: 80px 48px 80px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 32px;
+      max-width: 600px;
+    }
+
+    .event-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green);
+    }
+
+    .event-tag::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 420px;
+    }
+
+    .benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .benefit-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: rgba(20,221,62,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .benefit-icon svg {
+      width: 10px;
+      height: 10px;
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── FORM PANEL (right column) ── */
+    .form-panel {
+      grid-column: 2;
+      grid-row: 2;
+      padding: 80px 48px 80px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .form-card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .form-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    input, select {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input::placeholder {
+      color: rgba(255,255,255,0.2);
+    }
+
+    input:focus, select:focus {
+      border-color: rgba(20,221,62,0.5);
+      box-shadow: 0 0 0 3px var(--input-focus);
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    select option {
+      background: #1E2728;
+      color: #fff;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--green);
+      color: var(--bg);
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .submit-btn:hover { opacity: 0.88; }
+    .submit-btn:active { transform: scale(0.98); }
+
+    .privacy-note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    /* ── SUCCESS STATE ── */
+    .success-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      padding: 20px 0;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(20,221,62,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .success-state h3 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .success-state p {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      grid-column: 1 / -1;
+      padding: 20px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-text a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+      nav { padding: 20px 24px; }
+      .hero {
+        grid-column: 1;
+        grid-row: 2;
+        padding: 48px 24px 32px;
+        max-width: 100%;
+      }
+      .form-panel {
+        grid-column: 1;
+        grid-row: 3;
+        padding: 0 24px 48px;
+      }
+      footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+      h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- NAV -->
+    <nav>
+      <a href="https://koin-hub.netlify.app/" class="logo" target="_blank" rel="noopener">
+        <div class="logo-mark">K</div>
+        <span class="logo-text">koin</span>
+      </a>
+      <span class="nav-badge">VTEX Day 2026</span>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <span class="event-tag">São Paulo · Maio 2026</span>
+
+      <h1>Destrave o crescimento<br />do seu <span>e-commerce</span>.</h1>
+
+      <p class="hero-desc">
+        Na Koin, transformamos dados em decisões inteligentes. Converse com nosso time no VTEX Day e descubra como nossas soluções financeiras impulsionam a conversão e a receita da sua operação.
+      </p>
+
+      <div class="benefits">
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Soluções de pagamento e crédito para e-commerce
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Inteligência de dados para aumentar conversão
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Parceiro oficial VTEX com integração nativa
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Time especializado com atendimento dedicado
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM PANEL -->
+    <section class="form-panel">
+      <div class="form-card">
+        <h2>Fale com nosso time</h2>
+        <p>Preencha seus dados e entraremos em contato.</p>
+
+        <!-- Netlify Forms -->
+        <form
+          name="leads-vtexday"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          id="leadForm"
+        >
+          <!-- Netlify hidden fields -->
+          <input type="hidden" name="form-name" value="leads-vtexday" />
+          <input type="hidden" name="bot-field" style="display:none" />
+
+          <div class="form-group">
+            <label for="nome">Nome completo</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              placeholder="João Silva"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail corporativo</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="joao@empresa.com.br"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input
+              type="tel"
+              id="telefone"
+              name="telefone"
+              placeholder="(11) 99999-9999"
+              required
+              autocomplete="tel"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input
+              type="text"
+              id="empresa"
+              name="empresa"
+              placeholder="Nome da empresa"
+              required
+              autocomplete="organization"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cargo">Cargo</label>
+            <select id="cargo" name="cargo" required>
+              <option value="" disabled selected>Selecione seu cargo</option>
+              <option value="ceo_founder">CEO / Founder</option>
+              <option value="cto_tech">CTO / Tech Lead</option>
+              <option value="diretor_ecommerce">Diretor(a) de E-commerce</option>
+              <option value="gerente_ecommerce">Gerente de E-commerce</option>
+              <option value="diretor_marketing">Diretor(a) de Marketing</option>
+              <option value="gerente_marketing">Gerente de Marketing</option>
+              <option value="diretor_financeiro">Diretor(a) Financeiro</option>
+              <option value="produto">Product Manager</option>
+              <option value="analista">Analista</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">Quero conversar com a Koin</button>
+          <p class="privacy-note">Seus dados estão seguros e não serão compartilhados.</p>
+        </form>
+
+        <!-- Success message (shown after submit) -->
+        <div class="success-state" id="successState">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Recebemos seu contato!</h3>
+          <p>Nosso time entrará em contato em breve.<br/>Até lá, veja nossas soluções em <a href="https://koin-hub.netlify.app/" style="color:var(--green);">koin-hub.netlify.app</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span class="footer-text">© 2026 Koin · <a href="https://koin-hub.netlify.app/" target="_blank" rel="noopener">koin-hub.netlify.app</a></span>
+      <span class="footer-text">VTEX Day 2026 · São Paulo</span>
+    </footer>
+
+  </div>
+
+  <script>
+    // Phone mask
+    document.getElementById('telefone').addEventListener('input', function (e) {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length <= 10) {
+        v = v.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+      } else {
+        v = v.replace(/^(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+      }
+      e.target.value = v.replace(/-$/, '');
+    });
+
+    // Show success state after Netlify redirect (hash trick)
+    if (window.location.search.includes('success=true')) {
+      document.getElementById('leadForm').style.display = 'none';
+      document.getElementById('successState').style.display = 'flex';
+    }
+
+    // AJAX submit for SPA feel (Netlify supports this)
+    document.getElementById('leadForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString(),
+      })
+        .then(() => {
+          form.style.display = 'none';
+          document.getElementById('successState').style.display = 'flex';
+        })
+        .catch(() => {
+          form.submit(); // fallback to native submit
+        });
+    });
+  </script>
+</body>
+</html>
